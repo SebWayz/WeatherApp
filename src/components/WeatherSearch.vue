@@ -60,13 +60,6 @@
     </div>
     
   </transition-group>
-
-  <p class="credit">
-    Made by 
-    <a href="https://github.com/SebWayz" target="_blank" rel="noopener noreferrer">
-      SebWay
-    </a>
-  </p>
 </template>
 
 <style scoped>
@@ -82,18 +75,5 @@
   .weather-enter-from, .weather-leave-to {
     opacity: 0;
     transform: translateY(20px)
-  }
-
-  .credit {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    font-size: 13px;
-  }
-
-  .credit > a {
-    text-decoration: none;
   }
 </style>
