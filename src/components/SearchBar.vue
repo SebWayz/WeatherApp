@@ -1,25 +1,37 @@
 <script setup lang="ts">
-  import { ref, inject } from 'vue'
+  import { ref, inject, reactive } from 'vue'
 
   const axios: any = inject('axios')
 
-  const selectedCity = ref('');
+  const state = reactive({
+    selectedCity: ref(''),
+    inputError: false,
+    inputErrorMsg: 'Le nom doit faire 2 caractères minimum.'
+  });
 
   const emit = defineEmits<{
     (event: 'selectedCity', city: string): void
   }>();
 
   const submitCity = () => {
-    console.log("selectedCity in child : ", selectedCity)
-    emit('selectedCity', selectedCity.value)
-    selectedCity.value = ''
+    state.inputError = false
+    if (state.selectedCity.length >= 2) {
+        emit('selectedCity', state.selectedCity)
+        state.selectedCity = ''
+    } else {
+        state.inputError = true
+    }
   }
 </script>
 
 <template>
     <div>
-        <input v-model="selectedCity" type="search" placeholder="Nom de ville / village" name="rechercheVille" id="rechercheVille" ref="rechercheVille" @keyup.enter="submitCity">
+        <input v-model="state.selectedCity" type="search" placeholder="Nom de ville / village" name="rechercheVille" id="rechercheVille" ref="rechercheVille" @keyup.enter="submitCity">
         <button @click="submitCity"/>
+    </div>
+
+    <div v-if="state.inputError">
+      <h2 style="color: #a3160b;">{{ state.inputErrorMsg }}</h2>
     </div>
 </template>
 

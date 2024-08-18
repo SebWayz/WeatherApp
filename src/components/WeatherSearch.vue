@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { reactive, ref, toRaw } from 'vue'
+  import { reactive, toRaw } from 'vue'
   import { inject } from 'vue'
   import SearchBar from './SearchBar.vue'
 
@@ -69,7 +69,7 @@
   }
 
   .weather-enter-active, .weather-leave-active {
-    transition: all 1s ease;
+    transition: all 0.6s ease;
   }
 
   .weather-enter-from, .weather-leave-to {
